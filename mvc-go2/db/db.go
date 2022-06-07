@@ -3,7 +3,6 @@ package db
 import (
 	userClient "mvc-go/clients/user"
 	"mvc-go/model"
-	"os"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -17,11 +16,11 @@ var (
 
 func init() {
 	// DB Connections Paramters
-	DBName := "sql10482597"
-	DBUser := "sql10482597"
-	//DBPass := ""
-	DBPass := os.Getenv("MVC_DB_PASS")
-	DBHost := "sql10.freemysqlhosting.net"
+	DBName := "Makeup"
+	DBUser := "root"
+	DBPass := ""
+	//DBPass := os.Getenv("MVC_DB_PASS")
+	DBHost := "127.0.0.1"
 	// ------------------------
 
 	db, err = gorm.Open("mysql", DBUser+":"+DBPass+"@tcp("+DBHost+":3306)/"+DBName+"?charset=utf8&parseTime=True")
@@ -40,6 +39,9 @@ func init() {
 func StartDbEngine() {
 	// We need to migrate all classes model.
 	db.AutoMigrate(&model.User{})
-
+	db.AutoMigrate(&model.Product{})
+	db.AutoMigrate(&model.OrderDetail{})
+	db.AutoMigrate(&model.Category{})
+	db.AutoMigrate(&model.OrderDto{})
 	log.Info("Finishing Migration Database Tables")
 }

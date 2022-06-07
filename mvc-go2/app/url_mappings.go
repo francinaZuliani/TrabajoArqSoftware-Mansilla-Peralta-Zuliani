@@ -16,6 +16,7 @@ func mapUrls() {
 	router.GET("/user/:id", userController.GetUserById)
 	router.GET("/user", userController.GetUsers)
 	router.POST("/user", userController.UserInsert)
+	router.POST("/login", userController.Login)
 
 	log.Info("Finishing mappings configurations")
 }

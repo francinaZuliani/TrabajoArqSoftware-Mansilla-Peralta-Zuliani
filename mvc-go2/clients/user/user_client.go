@@ -18,6 +18,16 @@ func GetUserById(id int) model.User {
 	return user
 }
 
+//Ingresa con nombre y password
+func GetUserByName(name string) model.User {
+	var user model.User
+
+	Db.Where("name = ?", name).First(&user)
+	log.Debug("User: ", user)
+
+	return user
+}
+
 func GetUsers() model.Users {
 	var users model.Users
 	Db.Find(&users)
